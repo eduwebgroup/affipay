@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="payment_acquirer_view_form_inherit" model="ir.ui.view">
+            <field name="name">payment.acquirer.view.form.inherit</field>
+            <field name="model">payment.acquirer</field>
+            <field name="inherit_id" ref="payment.acquirer_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='acquirer_credentials']" position="inside">
+                    <group attrs="{'invisible': [('provider', '!=', 'affipay')]}">
+                        <field name="affipay_username" attrs="{'required':[('provider', '=', 'affipay')]}"/>
+                        <field name="affipay_password" password="True" attrs="{'required':[('provider', '=', 'affipay')]}"/>
+                        <separator string="Production URLs" colspan="2"/>
+                        <field name="affipay_prod_auth_url" placeholder="default: https://sandbox-tokener.blumonpay.net/oauth/token"/>
+                        <field name="affipay_prod_ecommerce_url" placeholder="default: https://sandbox-ecommerce.blumonpay.net/ecommerce/v2/charge"/>
+                        <separator string="Sandbox URLs" colspan="2"/>
+                        <field name="affipay_sandbox_auth_url" placeholder="default: https://sandbox-tokener.blumonpay.net/oauth/token"/>
+                        <field name="affipay_sandbox_ecommerce_url" placeholder="default: https://sandbox-ecommerce.blumonpay.net/ecommerce/v2/charge"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
