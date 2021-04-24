@@ -50,7 +50,7 @@ class PaymentAcquirer(models.Model):
     # Private attributes #
     ######################
     _inherit = "payment.acquirer"
-    _affipay_oauth_credentials = "affipay_ecommerce_api:affipay_ecommerce_api_password"
+    _affipay_oauth_credentials = "blumon_pay_ecommerce_api:blumon_pay_ecommerce_api_password"
 
     ###################
     # Default methods #
