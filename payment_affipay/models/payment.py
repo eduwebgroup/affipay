@@ -233,8 +233,7 @@ class PaymentAcquirer(models.Model):
     def _affipay_build_token_request_json(self, vals):
         partner_id = self.env["res.partner"].browse(vals.get("partner_id"))
         exp_month, exp_year = vals.get("cc_expiry").split("/")
-        country_id = partner_id.country_id or self.env.company.country_id
-
+        country_id = partner_id.country_id or self.company_id.country_id
         return {
             "pan": vals.get("cc_number", "").replace(" ", ""),
             "expMonth": exp_month.strip(),
