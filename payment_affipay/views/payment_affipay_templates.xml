@@ -20,7 +20,7 @@
                     <input type="text" name="cc_expiry" id="cc_expiry" class="form-control" maxlength="7" placeholder="Expires (MM / YY)" data-is-required="true"/>
                 </div>
                 <div t-att-class="'form-group col-md-6 col-lg-2'">
-                    <input type="text" name="cc_cvc" id="cc_cvc" class="form-control" maxlength="4" placeholder="CVC" data-is-required="true"/>
+                    <input type="password" name="cc_cvc" id="cc_cvc" class="form-control" maxlength="4" placeholder="CVC" data-is-required="true"/>
                 </div>
             </div>
         </template>
