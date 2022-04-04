@@ -211,11 +211,12 @@ class PaymentAcquirer(models.Model):
                         "Affipay: Retrying request on %s. (%i retries left)" % (url, retries))
                     retries -= 1
                     return self._affipay_ecommerce_request(url, retries=retries, **kwargs)
+            raise e
             err = res_json.get("error", "Error")
             err_code = err.get("httpStatusCode", 400)
             err_description = err.get(
                 "description", "Something is wrong with the request")
-            raise ValidationError("affipay Error: %s %s" % (err_code, err_description))
+            raise AffipayError("affipay Error: %s %s" % (err_code, err_description))
 
     def _affipay_refresh_access_token(self):
         self.ensure_one()
@@ -226,7 +227,7 @@ class PaymentAcquirer(models.Model):
         })
         if not data.get("access_token"):
             _logger.error(json.dumps(data))
-            raise ValidationError("No access token given.")
+            raise AffipayError("No access token given.")
         self.affipay_access_token = data.get("access_token")
         return self.affipay_access_token
 
